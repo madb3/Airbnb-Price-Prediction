@@ -1,7 +1,7 @@
 # Overview
 A machine learning model to predict Airbnb listing prices using structured listing data. The goal is to identify key factors that influence pricing and build a reproducible data workflow.
 
-## Tech Stach
+## Tech Stack
 * Python
 * pandas, numpy
 * sci-kit learn
