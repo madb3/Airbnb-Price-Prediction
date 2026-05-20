@@ -8,12 +8,27 @@ A machine learning model to predict Airbnb listing prices using structured listi
 * PostreSQL
 
 ## Dataset
-The dataset contains Airbnb listing information in Hawaii including:
-* Property characteristics (beds, bathrooms, accommodates, etc.)
-* Location data (latitude, longitude, neighborhood)
-* Review and availability metrics
-* Pricing info
-Source: InsideAirbnb dataset
+The dataset contains Airbnb property listing information in Hawaii: 
+| Column | Type | Description |
+|---|---|---|
+| id | INTEGER | Unique listing ID |
+| price | FLOAT | Nightly listing price |
+| room_type | VARCHAR | Type of property |
+| accommodates | INTEGER | Maximum guest count |
+| neighborhood_cleansed | VARCHAR | Neighborhood location |
+
+Source: [InsideAirbnb dataset](https://insideairbnb.com/get-the-data/)
+
+## listings
+
+Stores Airbnb property listing information.
+| Column | Type | Description |
+|---|---|---|
+| id | INTEGER | Unique listing ID |
+| price | FLOAT | Nightly listing price |
+| room_type | VARCHAR | Type of property |
+| accommodates | INTEGER | Maximum guest count |
+| neighborhood_cleansed | VARCHAR | Neighborhood location |
 
 ## Approach
 **1. Data Cleansing**
