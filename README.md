@@ -8,7 +8,7 @@ A machine learning model to predict Airbnb listing prices using structured listi
 * PostreSQL
 
 ## Dataset
-The dataset contains Airbnb property listing information in Hawaii: 
+The dataset contains Airbnb property listing information in Hawaii including: 
 | Column | Type | Description |
 |---|---|---|
 | id | INTEGER | Unique listing ID |
