@@ -1,5 +1,14 @@
 data/listings.csv
-models/
+
+#Python cache
 __pycache__/
 *.pyc
+
+#Models
 *.pkl
+
+#Notebook checkpoints
+.ipynb_checkpoints/
+
+#Environmental variables
+.env
