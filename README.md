@@ -6,48 +6,54 @@ A machine learning model to predict Airbnb listing prices using structured listi
 * pandas, numpy
 * sci-kit learn
 * PostreSQL
+* SQLAlchemy
+* Joblib
 
 ## Dataset
 The dataset contains Airbnb property listing information in Hawaii including: 
-| Column | Type | Description |
-|---|---|---|
-| id | INTEGER | Unique listing ID |
-| price | FLOAT | Nightly listing price |
-| room_type | VARCHAR | Type of property |
-| accommodates | INTEGER | Maximum guest count |
-| neighborhood_cleansed | VARCHAR | Neighborhood location |
+
+**Numeric features:**
+- accomodates
+- bathrooms
+- beds
+- bedrooms
+- review_scores_rating
+- number_of_reviews
+- availability_365
+- latitude
+- longitude
+
+**Categorical features:**
+- room_type
+- neighbourhood_cleansed
 
 Source: [InsideAirbnb dataset](https://insideairbnb.com/get-the-data/)
 
-## listings
+## How it works
+### 1. Data Loading
+Data is pulled directly from PostgreSQL
+```df = pd.read_sql("SELECT * FROM listings", engine)```
 
-Stores Airbnb property listing information.
-| Column | Type | Description |
-|---|---|---|
-| id | INTEGER | Unique listing ID |
-| price | FLOAT | Nightly listing price |
-| room_type | VARCHAR | Type of property |
-| accommodates | INTEGER | Maximum guest count |
-| neighborhood_cleansed | VARCHAR | Neighborhood location |
+### 2. Data Cleaning
+* Removes $ and commas from price
+* Converts price to numeric
+* Drops missing values
+* Applies log transformation
 
-## Approach
-**1. Data Cleansing**
-   * Converted price from string to numeric
-   * Handles missing values using median/mode imputation
-   * Applied log transformation to reduce price skew
+### 3. Training Pipeline
+* Train/test split (80/20)
+* Missing value imputation
+* One-hot encoding for categorical variables
+* Random Forest regression model
 
-**2. Feature Engineering**
-   * Selected numerical and categorical features
-   * Encoded categorical variables (room type, neighborhood)
-   * Included geographic features
+### 4. Model Training
+```pipeline.fit(X_train, y_train)```
 
-**3. Modeling Pipeline**
-   * Built a pipeline using:
-     - ColumnTransformer
-     - SimpleImputer
-     - OneHotEncoder
-    * Trained a Random Forest regression model
+### 5. Model Saving
+```joblib.dump((pipeline, X_test, y_test), "models/artifacts.pkl")```
 
-**4. Evaluation**
-   * Evaluated using R² score and Mean Absolute Error (MAE)
+
+## Future Improvements
+* Build interactive dashboard (Tableau)
+
 
